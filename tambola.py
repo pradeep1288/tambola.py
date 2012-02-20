@@ -11,20 +11,106 @@ class Ticket:
         self.total_tickets = total_tickets
         self.row = 3
         self.column = 9
+        self.min_num = 9
+        self.range = [0,0,0,0,0,0,0,0,0]
+    
     def generate(self):
+        self.range = [0,0,0,0,0,0,0,0,0]
         ticket_page = {}
         count = 1
         max_num = 15
         while count <= self.total_tickets:
             i = 1
+            j = 1
             ticket = {}
             while i <= max_num:
+                while j <= self.min_num:
+                    rand_num = random.randrange(1,90)
+                    if ticket.has_key(rand_num):
+                        continue
+                    else:
+                        if rand_num < 10 and self.range[0] < 1:
+                            ticket[rand_num] = 1
+                            self.range[0] = self.range[0] + 1
+                            j = j + 1
+                        elif (rand_num < 20 and rand_num >= 10) and self.range[1] < 1:
+                            ticket[rand_num] = 1
+                            self.range[1] = self.range[1] + 1
+                            j = j + 1
+                        elif (rand_num < 30 and rand_num >=20) and self.range[2] < 1:
+                            ticket[rand_num] = 1
+                            self.range[2] = self.range[2] + 1
+                            j = j + 1
+                        elif (rand_num < 40 and rand_num >= 30) and self.range[3] < 1:
+                            ticket[rand_num] = 1
+                            self.range[3] = self.range[3] + 1
+                            j = j + 1
+                        elif (rand_num < 50 and rand_num >= 40) and self.range[4] < 1:
+                            ticket[rand_num] = 1
+                            self.range[4] = self.range[4] + 1
+                            j = j + 1
+                        elif (rand_num < 60 and rand_num >= 50) and self.range[5] < 1:
+                            ticket[rand_num] = 1
+                            self.range[5] = self.range[5] + 1
+                            j = j + 1
+                        elif (rand_num < 70 and rand_num >= 60) and self.range[6] < 1:
+                            ticket[rand_num] = 1
+                            self.range[6] = self.range[6] + 1
+                            j = j + 1
+                        elif (rand_num < 80 and rand_num >= 70) and self.range[7] < 1:
+                            ticket[rand_num] = 1
+                            self.range[7] = self.range[7] + 1
+                            j = j + 1
+                        elif (rand_num <=90 and rand_num >= 80) and self.range[8] < 1:
+                            ticket[rand_num] = 1
+                            self.range[8] = self.range[8] + 1
+                            j = j + 1
+                        else:
+                            continue
+                    i = j
                 rand_num = random.randrange(1,90)
+
                 if ticket.has_key(rand_num):
                     continue
                 else:
-                    ticket[rand_num] = 1
-                    i = i + 1
+                    if rand_num < 10 and self.range[0] < 3:
+                        ticket[rand_num] = 1
+                        self.range[0] = self.range[0] + 1
+                        i = i + 1
+                    elif (rand_num < 20 and rand_num >= 10) and self.range[1] < 3:
+                        ticket[rand_num] = 1
+                        self.range[1] = self.range[1] + 1
+                        i = i + 1
+                    elif (rand_num < 30 and rand_num >= 20) and self.range[2] < 3:
+                        ticket[rand_num] = 1
+                        self.range[2] = self.range[2] + 1
+                        i = i + 1
+                    elif (rand_num < 40 and rand_num >= 30) and self.range[3] < 3:
+                        ticket[rand_num] = 1
+                        self.range[3] = self.range[3] + 1
+                        i = i + 1
+                    elif (rand_num < 50 and rand_num >= 40) and self.range[4] < 3:
+                        ticket[rand_num] = 1
+                        self.range[4] = self.range[4] + 1
+                        i = i + 1
+                    elif (rand_num < 60 and rand_num >= 50) and self.range[5] < 3:
+                        ticket[rand_num] = 1
+                        self.range[5] = self.range[5] + 1
+                        i = i + 1
+                    elif (rand_num < 70 and rand_num >= 60) and self.range[6] < 3:
+                        ticket[rand_num] = 1
+                        self.range[6] = self.range[6] + 1
+                        i = i + 1
+                    elif (rand_num < 80 and rand_num >= 70) and self.range[7] < 3:
+                        ticket[rand_num] = 1
+                        self.range[7] = self.range[7] + 1
+                        i = i + 1
+                    elif (rand_num <=90 and rand_num >= 80) and self.range[8] < 3:
+                        ticket[rand_num] = 1
+                        self.range[8] = self.range[8] + 1
+                        i = i + 1
+                    else:
+                        continue
             ticket_page[str(count)]=ticket.keys()
             count = count + 1
         return ticket_page
@@ -38,29 +124,42 @@ class Ticket:
             data = (row1,row2,row3)
             t = Table(data)
             t.col_separator = "|"
-            for i in range(len(data)):
+            i = 0
+            while i < 3:
                 j = 0
                 while j < 5:
                     num_add = value.pop()
-                    if num_add < 10:
+                    if num_add < 10 and data[i][0] == " ":
                         data[i][0] = str(num_add)
-                    elif num_add < 20:
+                        j = j + 1
+                    elif (num_add < 20 and num_add >= 10) and data[i][1] == " ":
                         data[i][1] = str(num_add)
-                    elif num_add < 30:
+                        j = j + 1
+                    elif (num_add < 30 and num_add >= 20) and data[i][2] == " ":
                         data[i][2] = str(num_add)
-                    elif num_add < 40:
+                        j = j + 1
+                    elif (num_add < 40 and num_add >= 30) and data[i][3] == " ":
                         data[i][3] = str(num_add)
-                    elif num_add < 50:
+                        j = j + 1
+                    elif (num_add < 50 and num_add >= 40) and data[i][4] == " ":
                         data[i][4] = str(num_add)
-                    elif num_add < 60:
-                        data[i][5] = str(num_add)       
-                    elif num_add < 70:
+                        j = j + 1
+                    elif (num_add < 60 and num_add >= 50) and data[i][5] == " ":
+                        data[i][5] = str(num_add)   
+                        j = j + 1    
+                    elif (num_add < 70 and num_add >= 60) and data[i][6] == " ":
                         data[i][6] = str(num_add)
-                    elif num_add < 80:
+                        j = j + 1
+                    elif (num_add < 80 and num_add >= 70) and data[i][7] == " ":
                         data[i][7] = str(num_add)
+                        j = j + 1
+                    elif (num_add <= 90 and num_add >= 80) and data[i][8] == " ":
+                        data[i][8] = str(num_add)
+                        j = j + 1
                     else:
-                        data[i][8] = str(num_add)  
-                    j = j + 1 
+                        value.insert(0,num_add)  
+                i = i + 1
+                 
             print "\n"
             t.print_table()
                  
@@ -163,5 +262,7 @@ class Table:
             stream.write(row)
             stream.write('\n')
 
-Ticket(10).get_tickets()
-
+i = 1
+while i <= 10:
+    print Ticket(1).generate()
+    i = i + 1
