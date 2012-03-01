@@ -1,5 +1,5 @@
 ## Description
-Play the popular game Tambola a.k.a at your will :) 
+Play the popular game Tambola a.k.a Bingo at your will :) 
 
 ## Usage
 To generate 50 tickets 
