@@ -186,16 +186,16 @@ class Ticket:
                     count = count + 1
             for i in range(0,9):
                 if row1_elim[i] == 1:
-                    data[0][i] = " "
+                    data[0][i] = "-"
                 else:
                     row2_res = i
             row1_elim[row2_res] = 1
             for i in range(0,9):
                 if row1_elim[i] == 0:
-                    data[1][i] = " "
+                    data[1][i] = "-"
             for j in range(0,9):
                 if row3_elim[j] == 1:
-                    data[2][j] = " "
+                    data[2][j] = "-"
             t = Table(data)
             t.col_separator = "|"
             t.print_table()
