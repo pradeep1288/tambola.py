@@ -167,17 +167,35 @@ class Ticket:
                  
             print "\n"
         count = 1
-        row1_elim = {}
+        row1_elim = [0,0,0,0,0,0,0,0,0]
         while count <= 4:
             rand_num = random.randrange(0,9)
-            if row1_elim.has_key(rand_num):
+            if row1_elim[rand_num] != 0:
                 continue
             else:
                 row1_elim[rand_num] = 1
                 count = count + 1
-        row2_res = random.randrange(0,9)
-        for i in row1_elim.keys():
-            data[0][i] = " "
+        row3_elim = [0,0,0,0,0,0,0,0,0]
+        count = 1 
+        while count <= 4:
+            rand_num = random.randrange(0,9)
+            if row3_elim[rand_num] != 0:
+                continue
+            else:
+                row3_elim[rand_num] = 1
+                count = count + 1
+        for i in range(0,9):
+            if row1_elim[i] == 1:
+                data[0][i] = " "
+            else:
+                row2_res = i
+        row1_elim[row2_res] = 1
+        for i in range(0,9):
+            if row1_elim[i] == 0:
+                data[1][i] = " "
+        for j in range(0,9):
+            if row3_elim[j] == 1:
+                data[2][j] = " "
         t = Table(data)
         t.col_separator = "|"
         t.print_table()
