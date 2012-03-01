@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-import random
+import random,getopt
 import sys
 from prettytable import PrettyTable
 
@@ -299,5 +299,24 @@ class Table:
         for row in self.generate_rows():
             stream.write(row)
             stream.write('\n')
+def main():
+    try:
+        opts, args = getopt.getopt(sys.argv[1:],"h",["help", "generate="])
+        if len(sys.argv) == 1:
+            usage()
+            sys.exit()
+    except getopt.GetoptError, error:
+        print str(error)
+        usage()
+        sys.exit(2)
 
-Ticket(100).get_tickets()
+    for o, a in opts:
+        if o == "--generate":
+            Ticket(int(a)).get_tickets()
+        elif o in ("-h", "--help"):
+            usage()
+            sys.exit()
+        else:
+            pass
+if __name__ == "__main__":
+    main()
